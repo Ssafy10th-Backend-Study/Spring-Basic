@@ -15,6 +15,7 @@ public class AppConfig {
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
     }
+    //..
     @Bean
     public OrderService orderService() {
         return new OrderServiceImpl(
