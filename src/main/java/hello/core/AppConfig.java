@@ -28,16 +28,23 @@ import org.springframework.context.annotation.Configuration;
 @Configuration // 앱의 구성 정보, 설정 정보를 담당
 public class AppConfig {
 
+    //@Bean memberService -> new MemoryMemberRepository()
+    //@Bean orderService -> new MemoryMemberRepository()
+    //MemoryMemberRepository() 객체가 두 번 호출되는데, 싱글톤?
+
     @Bean // SpringContainer에 등록
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
     @Bean
